@@ -32,4 +32,20 @@ class CitiesTableViewController: UITableViewController {
 		return 1
 	}
 
+	@IBAction func cancelAddingCity(segue: UIStoryboardSegue) {
+
+	}
+
+	@IBAction func doneAddingCity(segue: UIStoryboardSegue) {
+		let addCityViewController = segue.sourceViewController as! AddCityViewController
+		addCity(addCityViewController.cityName)
+	}
+
+	private func addCity(cityName: String) {
+		cities.append(cityName)
+		let insertedIndex = cities.count - 1
+
+		tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: insertedIndex, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+	}
+
 }
