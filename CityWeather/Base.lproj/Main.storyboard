@@ -30,17 +30,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Cities List" id="40C-fa-caU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kWJ-FU-YRH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kWJ-FU-YRH">
+                            <connections>
+                                <segue destination="ZwL-NU-t5S" kind="show" id="PtC-3J-Bub"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQf-0M-dox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056" y="291"/>
         </scene>
-        <!--View Controller-->
+        <!--Add City-->
         <scene sceneID="32Z-Qm-Dqn">
             <objects>
-                <viewController id="y0K-rz-SEb" sceneMemberID="viewController">
+                <viewController id="y0K-rz-SEb" customClass="AddCityViewController" customModule="CityWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mhS-qg-lX2"/>
                         <viewControllerLayoutGuide type="bottom" id="g1a-Se-cly"/>
@@ -49,14 +53,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IL-H9-dLp">
-                                <rect key="frame" x="20" y="92" width="81" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IL-H9-dLp">
+                                <rect key="frame" x="20" y="92" width="84.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8B-JI-TS2">
-                                <rect key="frame" x="114" y="88" width="466" height="30"/>
+                                <rect key="frame" x="117.5" y="88" width="462.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -70,12 +74,24 @@
                             <constraint firstItem="5IL-H9-dLp" firstAttribute="top" secondItem="mhS-qg-lX2" secondAttribute="bottom" constant="28" id="wur-ji-t8d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="F9T-de-b3a">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tVU-0g-oD8"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="mh5-mu-5Vp"/>
+                    <navigationItem key="navigationItem" title="Add City" id="F9T-de-b3a">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tVU-0g-oD8">
+                            <connections>
+                                <segue destination="Srw-8f-DSZ" kind="unwind" identifier="cancelAddingCity" unwindAction="cancelAddingCity:" id="JBI-Nq-D5T"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="mh5-mu-5Vp">
+                            <connections>
+                                <segue destination="Srw-8f-DSZ" kind="unwind" identifier="doneAddingCity" unwindAction="doneAddingCity:" id="gJb-DU-RdH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cityNameTextField" destination="r8B-JI-TS2" id="0rw-Da-c6u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1G-iZ-iuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Srw-8f-DSZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2760" y="298"/>
         </scene>
