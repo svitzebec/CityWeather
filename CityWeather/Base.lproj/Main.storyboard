@@ -6,16 +6,16 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Cities List-->
         <scene sceneID="sI4-Jy-g5k">
             <objects>
-                <tableViewController id="vaD-yN-h9j" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bgw-c4-gFc">
+                <tableViewController id="vaD-yN-h9j" customClass="CitiesTableViewController" customModule="CityWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bgw-c4-gFc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FZC-U4-xxW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" id="FZC-U4-xxW">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FZC-U4-xxW" id="WKn-cT-eSa">
@@ -29,7 +29,7 @@
                             <outlet property="delegate" destination="vaD-yN-h9j" id="9ee-8u-bbf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="40C-fa-caU">
+                    <navigationItem key="navigationItem" title="Cities List" id="40C-fa-caU">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kWJ-FU-YRH"/>
                     </navigationItem>
                 </tableViewController>
@@ -71,7 +71,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F9T-de-b3a">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="tVU-0g-oD8"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tVU-0g-oD8"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="mh5-mu-5Vp"/>
                     </navigationItem>
                 </viewController>

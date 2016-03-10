@@ -11,6 +11,7 @@
 		E2E016F41C904E0D004E6779 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E016F21C904E0D004E6779 /* Main.storyboard */; };
 		E2E016F61C904E0D004E6779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2E016F51C904E0D004E6779 /* Assets.xcassets */; };
 		E2E016F91C904E0D004E6779 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E016F71C904E0D004E6779 /* LaunchScreen.storyboard */; };
+		E2E017051C91FF27004E6779 /* CitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E017041C91FF27004E6779 /* CitiesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		E2E016F51C904E0D004E6779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2E016F81C904E0D004E6779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2E016FA1C904E0D004E6779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2E017041C91FF27004E6779 /* CitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				E2E016EE1C904E0D004E6779 /* AppDelegate.swift */,
 				E2E016F21C904E0D004E6779 /* Main.storyboard */,
+				E2E017041C91FF27004E6779 /* CitiesTableViewController.swift */,
 				E2E016F51C904E0D004E6779 /* Assets.xcassets */,
 				E2E016F71C904E0D004E6779 /* LaunchScreen.storyboard */,
 				E2E016FA1C904E0D004E6779 /* Info.plist */,
@@ -132,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2E017051C91FF27004E6779 /* CitiesTableViewController.swift in Sources */,
 				E2E016EF1C904E0D004E6779 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +284,7 @@
 				E2E016FF1C904E0D004E6779 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
