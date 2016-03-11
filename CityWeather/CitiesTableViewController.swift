@@ -11,6 +11,7 @@ import UIKit
 class CitiesTableViewController: UITableViewController {
 
 	var cities = [String]()
+	var currentlySelectedCity: String? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -39,6 +40,26 @@ class CitiesTableViewController: UITableViewController {
 	@IBAction func doneAddingCity(segue: UIStoryboardSegue) {
 		let addCityViewController = segue.sourceViewController as! AddCityViewController
 		addCity(addCityViewController.cityName)
+	}
+
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		currentlySelectedCity = cities[indexPath.row]
+		performSegueWithIdentifier("showCityDetails", sender: self)
+	}
+
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		if identifier == "showCityDetails" {
+			return currentlySelectedCity != nil
+		}
+		return true
+	}
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "showCityDetails" {
+			if let cityDetailsViewController: CityDetailsViewController = segue.destinationViewController as? CityDetailsViewController {
+				cityDetailsViewController.cityName = currentlySelectedCity!
+			}
+		}
 	}
 
 	private func addCity(cityName: String) {

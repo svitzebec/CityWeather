@@ -13,6 +13,7 @@
 		E2E016F91C904E0D004E6779 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E016F71C904E0D004E6779 /* LaunchScreen.storyboard */; };
 		E2E017051C91FF27004E6779 /* CitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E017041C91FF27004E6779 /* CitiesTableViewController.swift */; };
 		E2E017071C920599004E6779 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E017061C920599004E6779 /* AddCityViewController.swift */; };
+		E2E017091C92395C004E6779 /* CityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E017081C92395C004E6779 /* CityDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E2E016FA1C904E0D004E6779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2E017041C91FF27004E6779 /* CitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesTableViewController.swift; sourceTree = "<group>"; };
 		E2E017061C920599004E6779 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
+		E2E017081C92395C004E6779 /* CityDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				E2E016F21C904E0D004E6779 /* Main.storyboard */,
 				E2E017041C91FF27004E6779 /* CitiesTableViewController.swift */,
 				E2E017061C920599004E6779 /* AddCityViewController.swift */,
+				E2E017081C92395C004E6779 /* CityDetailsViewController.swift */,
 				E2E016F51C904E0D004E6779 /* Assets.xcassets */,
 				E2E016F71C904E0D004E6779 /* LaunchScreen.storyboard */,
 				E2E016FA1C904E0D004E6779 /* Info.plist */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2E017091C92395C004E6779 /* CityDetailsViewController.swift in Sources */,
 				E2E017051C91FF27004E6779 /* CitiesTableViewController.swift in Sources */,
 				E2E017071C920599004E6779 /* AddCityViewController.swift in Sources */,
 				E2E016EF1C904E0D004E6779 /* AppDelegate.swift in Sources */,
