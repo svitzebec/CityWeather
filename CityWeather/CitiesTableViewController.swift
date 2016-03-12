@@ -10,7 +10,7 @@ import UIKit
 
 let userDefaultsCitiesKey = "storedCities"
 
-class CitiesTableViewController: UITableViewController {
+class CitiesTableViewController: UITableViewController, NSURLSessionDataDelegate {
 
 	var cities = [City]()
 	var currentlySelectedCity: City? = nil
@@ -18,13 +18,17 @@ class CitiesTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		refreshControl = UIRefreshControl()
+		refreshControl?.addTarget(self, action: Selector("pullToRefresh"), forControlEvents: .ValueChanged)
 		loadCitiesFromUserDefaults()
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("CityCell", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("CityCell", forIndexPath: indexPath) as! CityCell
 
-		cell.textLabel?.text = cities[indexPath.row].name
+		let cityName = cities[indexPath.row].name
+		cell.cityNameLabel.text = cityName
+		fetchWeatherDataForCell(cell, cityName: cityName)
 
 		return cell
 	}
@@ -37,9 +41,7 @@ class CitiesTableViewController: UITableViewController {
 		return 1
 	}
 
-	@IBAction func cancelAddingCity(segue: UIStoryboardSegue) {
-
-	}
+	@IBAction func cancelAddingCity(segue: UIStoryboardSegue) {}
 
 	@IBAction func doneAddingCity(segue: UIStoryboardSegue) {
 		let addCityViewController = segue.sourceViewController as! AddCityViewController
@@ -58,6 +60,49 @@ class CitiesTableViewController: UITableViewController {
 		return true
 	}
 
+	private func fetchWeatherDataForCell(cell: CityCell, cityName: String) {
+		let urlString = "\(apiUrl)?q=\(cityName)&appid=\(apiKey)&units=metric"
+		let url = NSURL(string: urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+		let session = NSURLSession.sharedSession()
+		let request = NSMutableURLRequest(URL: url!)
+
+		let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> () in
+
+			// the requests are sent consecutivelly very fast so it often happens that the server
+			// returns 429 - to many request, that is why the fetch is repeated
+			if ((response as! NSHTTPURLResponse).statusCode == 429) {
+				dispatch_async(dispatch_get_main_queue()) {
+					self.fetchWeatherDataForCell(cell, cityName: cell.cityNameLabel.text!)
+				}
+				return
+			}
+			if error != nil {
+				dispatch_async(dispatch_get_main_queue()) {
+					cell.cityTemperatureLabel.text = "/"
+				}
+
+				return
+			}
+
+			do {
+				let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! NSDictionary
+				let temperature = (jsonData["main"] as! NSDictionary)["temp"] as! Int
+
+				dispatch_async(dispatch_get_main_queue()) {
+					cell.cityTemperatureLabel.text = "\(temperature)\u{00B0}"
+				}
+
+			} catch {
+				dispatch_async(dispatch_get_main_queue()) {
+					cell.cityTemperatureLabel.text = "/"
+				}
+			}
+		})
+		
+		dataTask.resume()
+
+	}
+
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showCityDetails" {
 			if let cityDetailsViewController: CityDetailsViewController = segue.destinationViewController as? CityDetailsViewController {
@@ -74,6 +119,11 @@ class CitiesTableViewController: UITableViewController {
 		tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: insertedIndex, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
 
 		storeLocalCitiesToUserDefaults()
+	}
+
+	func pullToRefresh() {
+		tableView.reloadData()
+		refreshControl?.endRefreshing()
 	}
 
 	private func loadCitiesFromUserDefaults() {
