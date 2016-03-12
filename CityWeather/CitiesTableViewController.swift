@@ -28,6 +28,7 @@ class CitiesTableViewController: UITableViewController, NSURLSessionDataDelegate
 
 		let cityName = cities[indexPath.row].name
 		cell.cityNameLabel.text = cityName
+		cell.cityTemperatureLabel.text = ""
 		fetchWeatherDataForCell(cell, cityName: cityName)
 
 		return cell
@@ -98,9 +99,7 @@ class CitiesTableViewController: UITableViewController, NSURLSessionDataDelegate
 				let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! NSDictionary
 				let temperature = (jsonData["main"] as! NSDictionary)["temp"] as! Int
 
-				dispatch_async(dispatch_get_main_queue()) {
-					cell.cityTemperatureLabel.text = "\(temperature)\u{00B0}"
-				}
+				self.setCityTemperatureLabel(temperature, cell: cell)
 
 			} catch {
 				dispatch_async(dispatch_get_main_queue()) {
@@ -118,6 +117,17 @@ class CitiesTableViewController: UITableViewController, NSURLSessionDataDelegate
 			if let cityDetailsViewController: CityDetailsViewController = segue.destinationViewController as? CityDetailsViewController {
 				cityDetailsViewController.cityName = currentlySelectedCity!.name
 			}
+		}
+	}
+
+	private func setCityTemperatureLabel(temperature: Int, cell: CityCell) {
+		dispatch_async(dispatch_get_main_queue()) {
+			UIView.transitionWithView(cell.cityTemperatureLabel,
+				duration: 0.5,
+				options: .TransitionCrossDissolve,
+				animations: {() in
+					cell.cityTemperatureLabel.text = "\(temperature)\u{00B0}"
+				}, completion: nil)
 		}
 	}
 

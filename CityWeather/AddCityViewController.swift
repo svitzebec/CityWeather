@@ -18,6 +18,10 @@ class AddCityViewController: UIViewController {
 		super.viewDidLoad()
 	}
 
+	override func viewDidAppear(animated: Bool) {
+		cityNameTextField.becomeFirstResponder()
+	}
+
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "doneAddingCity" {
 			cityName = cityNameTextField.text!

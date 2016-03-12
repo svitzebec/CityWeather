@@ -15,6 +15,7 @@ class CityDetailsViewController: UIViewController {
 
 	var cityName = ""
 	@IBOutlet var cityNameLabel: UILabel!
+	@IBOutlet var fetchedCityNameLabel: UILabel!
 	@IBOutlet var weatherDescriptionLabel: UILabel!
 	@IBOutlet var temperatureLabel: UILabel!
 	@IBOutlet var humidityLabel: UILabel!
@@ -49,12 +50,9 @@ class CityDetailsViewController: UIViewController {
 				let temperature = (jsonData["main"] as! NSDictionary)["temp"] as! Int
 				let humidity = (jsonData["main"] as! NSDictionary)["humidity"] as! Int
 				let description = ((jsonData["weather"] as! NSArray)[0] as! NSDictionary)["description"] as! String
+				let name = jsonData["name"] as! String
 
-				dispatch_async(dispatch_get_main_queue()) {
-					self.temperatureLabel.text = "\(temperature)\u{00B0}"
-					self.humidityLabel.text = "\(humidity)%"
-					self.weatherDescriptionLabel.text = description
-				}
+				self.setCityDetailsInfo(temperature, humidity: humidity, description: description, name: name)
 
 			} catch {
 				self.showErrorMessage()
@@ -62,6 +60,20 @@ class CityDetailsViewController: UIViewController {
 		})
 
 		dataTask.resume()
+	}
+
+	private func setCityDetailsInfo(temperature: Int, humidity: Int, description: String, name: String) {
+		dispatch_async(dispatch_get_main_queue()) {
+			UIView.transitionWithView(self.displayView,
+				duration: 0.5,
+				options: .TransitionCrossDissolve,
+				animations: {() in
+					self.temperatureLabel.text = "\(temperature)\u{00B0}"
+					self.humidityLabel.text = "Humidity: \(humidity)%"
+					self.weatherDescriptionLabel.text = description
+					self.fetchedCityNameLabel.text = name
+				}, completion: nil)
+		}
 	}
 
 	private func showErrorMessage() {
