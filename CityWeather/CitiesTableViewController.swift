@@ -37,6 +37,16 @@ class CitiesTableViewController: UITableViewController, NSURLSessionDataDelegate
 		return cities.count
 	}
 
+	override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		return true
+	}
+
+	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if editingStyle == .Delete {
+			deleteCity(indexPath)
+		}
+	}
+
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
@@ -109,6 +119,13 @@ class CitiesTableViewController: UITableViewController, NSURLSessionDataDelegate
 				cityDetailsViewController.cityName = currentlySelectedCity!.name
 			}
 		}
+	}
+
+	private func deleteCity(indexPath: NSIndexPath) {
+		cities.removeAtIndex(indexPath.row)
+		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+
+		storeLocalCitiesToUserDefaults()
 	}
 
 	private func addCity(cityName: String) {
