@@ -8,19 +8,23 @@
 
 import UIKit
 
+let userDefaultsCitiesKey = "storedCities"
+
 class CitiesTableViewController: UITableViewController {
 
-	var cities = [String]()
-	var currentlySelectedCity: String? = nil
+	var cities = [City]()
+	var currentlySelectedCity: City? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		loadCitiesFromUserDefaults()
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("CityCell", forIndexPath: indexPath)
 
-		cell.textLabel?.text = cities[indexPath.row]
+		cell.textLabel?.text = cities[indexPath.row].name
 
 		return cell
 	}
@@ -57,16 +61,36 @@ class CitiesTableViewController: UITableViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showCityDetails" {
 			if let cityDetailsViewController: CityDetailsViewController = segue.destinationViewController as? CityDetailsViewController {
-				cityDetailsViewController.cityName = currentlySelectedCity!
+				cityDetailsViewController.cityName = currentlySelectedCity!.name
 			}
 		}
 	}
 
 	private func addCity(cityName: String) {
-		cities.append(cityName)
+		let newCity = City(name: cityName)
+		cities.append(newCity)
 		let insertedIndex = cities.count - 1
 
 		tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: insertedIndex, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
+
+		storeLocalCitiesToUserDefaults()
+	}
+
+	private func loadCitiesFromUserDefaults() {
+		let userDefaults = NSUserDefaults.standardUserDefaults()
+		let persistedCitiesData = userDefaults.objectForKey(userDefaultsCitiesKey) as? NSData
+
+		if let persistedCitiesDataUnwrapped = persistedCitiesData {
+			cities = NSKeyedUnarchiver.unarchiveObjectWithData(persistedCitiesDataUnwrapped) as! [City]
+		}
+	}
+
+	private func storeLocalCitiesToUserDefaults() {
+		let userDefaults = NSUserDefaults.standardUserDefaults()
+		let archivedCities = NSKeyedArchiver.archivedDataWithRootObject(cities as NSArray)
+
+		userDefaults.setObject(archivedCities, forKey: userDefaultsCitiesKey)
+		userDefaults.synchronize()
 	}
 
 }
