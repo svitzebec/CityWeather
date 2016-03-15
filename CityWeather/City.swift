@@ -11,20 +11,20 @@ import Foundation
 class City: NSObject, NSCoding {
 
 	var name: String = ""
-	var temperature: Double? = nil
+	var temperature: Int? = nil
 
 	init(name: String) {
 		self.name = name
 	}
 
-	init(name: String, temperature: Double) {
+	init(name: String, temperature: Int) {
 		self.name = name
 		self.temperature = temperature
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		name = aDecoder.decodeObjectForKey("name") as! String
-		temperature = aDecoder.decodeObjectForKey("temperature") as? Double
+		temperature = aDecoder.decodeObjectForKey("temperature") as? Int
 	}
 
 	func encodeWithCoder(aCoder: NSCoder) {

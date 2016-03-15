@@ -23,7 +23,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgU-zX-j1w">
-                                            <rect key="frame" x="20" y="11" width="0.0" height="0.0"/>
+                                            <rect key="frame" x="18" y="11" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MD7-dL-D2t" firstAttribute="top" secondItem="WKn-cT-eSa" secondAttribute="topMargin" constant="3" id="Gne-u7-O4u"/>
-                                        <constraint firstItem="rgU-zX-j1w" firstAttribute="leading" secondItem="WKn-cT-eSa" secondAttribute="leadingMargin" constant="12" id="Gy9-tY-2MB"/>
+                                        <constraint firstItem="rgU-zX-j1w" firstAttribute="leading" secondItem="WKn-cT-eSa" secondAttribute="leadingMargin" constant="10" id="Gy9-tY-2MB"/>
                                         <constraint firstItem="rgU-zX-j1w" firstAttribute="top" secondItem="WKn-cT-eSa" secondAttribute="topMargin" constant="3" id="a9D-HU-jLK"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="MD7-dL-D2t" secondAttribute="trailing" id="dnd-nt-xpd"/>
                                         <constraint firstItem="MD7-dL-D2t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rgU-zX-j1w" secondAttribute="trailing" constant="8" id="mGc-dH-0H0"/>
@@ -183,6 +183,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EcI-FP-TEU">
+                                <rect key="frame" x="267" y="330.5" width="65" height="30"/>
+                                <state key="normal" title="Try Again"/>
+                                <connections>
+                                    <action selector="tryAgainButtonAction:" destination="yHG-By-DJQ" eventType="touchUpInside" id="bTq-Fe-tR3"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76A-bE-Tph">
                                 <rect key="frame" x="0.0" y="164" width="600" height="436"/>
                                 <subviews>
@@ -228,28 +235,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NXN-hE-M3O" secondAttribute="trailing" constant="8" id="1BZ-yG-Pnq"/>
+                            <constraint firstItem="EcI-FP-TEU" firstAttribute="centerX" secondItem="OH2-45-o9z" secondAttribute="centerX" id="4Ex-MM-Ye2"/>
                             <constraint firstAttribute="trailing" secondItem="76A-bE-Tph" secondAttribute="trailing" id="5YX-cz-J18"/>
-                            <constraint firstItem="76A-bE-Tph" firstAttribute="centerY" secondItem="OH2-45-o9z" secondAttribute="centerY" id="8uH-2f-ZXr"/>
                             <constraint firstItem="NXN-hE-M3O" firstAttribute="top" secondItem="ReS-EL-Q7J" secondAttribute="bottom" constant="40" id="BWA-Ze-fgD"/>
                             <constraint firstItem="NXN-hE-M3O" firstAttribute="leading" secondItem="OH2-45-o9z" secondAttribute="leading" constant="8" id="JrH-91-dNx"/>
                             <constraint firstItem="76A-bE-Tph" firstAttribute="top" secondItem="ReS-EL-Q7J" secondAttribute="bottom" constant="100" id="M6J-n3-k9W"/>
+                            <constraint firstItem="EcI-FP-TEU" firstAttribute="top" secondItem="XnC-Df-t9h" secondAttribute="bottom" constant="20" id="PVE-5W-f9s"/>
                             <constraint firstItem="76A-bE-Tph" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NXN-hE-M3O" secondAttribute="bottom" constant="10" id="U2u-Ex-1Pd"/>
                             <constraint firstItem="jVs-wd-WuF" firstAttribute="top" secondItem="76A-bE-Tph" secondAttribute="bottom" id="VCl-fA-1tU"/>
                             <constraint firstItem="XnC-Df-t9h" firstAttribute="centerY" secondItem="OH2-45-o9z" secondAttribute="centerY" id="XRT-V0-QuN"/>
-                            <constraint firstItem="76A-bE-Tph" firstAttribute="height" secondItem="OH2-45-o9z" secondAttribute="height" id="ZCV-WO-pYU"/>
                             <constraint firstItem="XnC-Df-t9h" firstAttribute="centerX" secondItem="OH2-45-o9z" secondAttribute="centerX" id="h6l-fU-DEX"/>
                             <constraint firstItem="76A-bE-Tph" firstAttribute="leading" secondItem="OH2-45-o9z" secondAttribute="leading" id="lUx-Fc-bEp"/>
-                            <constraint firstItem="76A-bE-Tph" firstAttribute="centerX" secondItem="OH2-45-o9z" secondAttribute="centerX" id="tT6-BX-0B4"/>
-                            <constraint firstItem="76A-bE-Tph" firstAttribute="width" secondItem="OH2-45-o9z" secondAttribute="width" id="w4V-C3-bIS"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="8uH-2f-ZXr"/>
-                                <exclude reference="ZCV-WO-pYU"/>
-                                <exclude reference="tT6-BX-0B4"/>
-                                <exclude reference="w4V-C3-bIS"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="5tG-df-W4H"/>
                     <connections>
