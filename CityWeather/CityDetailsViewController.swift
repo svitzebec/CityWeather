@@ -25,9 +25,12 @@ class CityDetailsViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		errorLabel.hidden = true
+		showCityDetails()
 		cityNameLabel.text = cityName
 
+		fetchWeatherData()
+	}
+	@IBAction func tryAgainButtonAction(sender: AnyObject) {
 		fetchWeatherData()
 	}
 
@@ -52,6 +55,7 @@ class CityDetailsViewController: UIViewController {
 				let description = ((jsonData["weather"] as! NSArray)[0] as! NSDictionary)["description"] as! String
 				let name = jsonData["name"] as! String
 
+				self.showCityDetails()
 				self.setCityDetailsInfo(temperature, humidity: humidity, description: description, name: name)
 
 			} catch {
@@ -80,6 +84,13 @@ class CityDetailsViewController: UIViewController {
 		dispatch_async(dispatch_get_main_queue()) {
 			self.displayView.hidden = true
 			self.errorLabel.hidden = false
+		}
+	}
+
+	private func showCityDetails() {
+		dispatch_async(dispatch_get_main_queue()) {
+			self.errorLabel.hidden = true
+			self.displayView.hidden = false
 		}
 	}
 

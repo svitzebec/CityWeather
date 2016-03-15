@@ -8,6 +8,8 @@
 
 import UIKit
 
+let doneAddingCitySegueIdentifier = "doneAddingCity"
+
 class AddCityViewController: UIViewController {
 
 	var cityName: String = ""
@@ -23,13 +25,13 @@ class AddCityViewController: UIViewController {
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "doneAddingCity" {
+		if segue.identifier == doneAddingCitySegueIdentifier {
 			cityName = cityNameTextField.text!
 		}
 	}
 
 	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-		if identifier == "doneAddingCity" {
+		if identifier == doneAddingCitySegueIdentifier {
 			return !cityNameTextField.text!.isEmpty
 		} else {
 			return true
