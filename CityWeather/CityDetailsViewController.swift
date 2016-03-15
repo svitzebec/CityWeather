@@ -22,6 +22,12 @@ class CityDetailsViewController: UIViewController {
 	@IBOutlet var displayView: UIView!
 	@IBOutlet var errorLabel: UILabel!
 
+	@IBAction func tryAgainButtonAction(sender: AnyObject) {
+		fetchWeatherData()
+	}
+
+	// MARK: - View controller lifecycle functions
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -30,9 +36,8 @@ class CityDetailsViewController: UIViewController {
 
 		fetchWeatherData()
 	}
-	@IBAction func tryAgainButtonAction(sender: AnyObject) {
-		fetchWeatherData()
-	}
+
+	// MARK: - Data fetch functions
 
 	private func fetchWeatherData() {
 		let urlString = "\(apiUrl)?q=\(cityName)&appid=\(apiKey)&units=metric"
@@ -65,6 +70,8 @@ class CityDetailsViewController: UIViewController {
 
 		dataTask.resume()
 	}
+
+	// MARK: - UI update functions for fetched data
 
 	private func setCityDetailsInfo(temperature: Int, humidity: Int, description: String, name: String) {
 		dispatch_async(dispatch_get_main_queue()) {

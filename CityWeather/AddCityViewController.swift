@@ -16,6 +16,8 @@ class AddCityViewController: UIViewController {
 
 	@IBOutlet var cityNameTextField: UITextField!
 
+	// MARK: - View controller lifecycle functions
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
@@ -23,6 +25,8 @@ class AddCityViewController: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		cityNameTextField.becomeFirstResponder()
 	}
+
+	// MARK: - Segue functions
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == doneAddingCitySegueIdentifier {
@@ -32,6 +36,8 @@ class AddCityViewController: UIViewController {
 
 	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
 		if identifier == doneAddingCitySegueIdentifier {
+			// The done city action could be performed only if the city name 
+			// has been entered
 			return !cityNameTextField.text!.isEmpty
 		} else {
 			return true
